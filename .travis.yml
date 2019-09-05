@@ -1,3 +1,5 @@
+language: go
+
 jobs:
   include:
   - script: echo "one"
@@ -8,8 +10,8 @@ jobs:
     dist: bionic
     deploy:
       provider: releases
+      file: deploy_me.txt
+      on:
+        repo: hilary/travistest
       api_key:
         secure: o64iY3NNN+O0e5xlnKWWTUW5p9cEtn83Ljiif7hXTBnox94UdkO03CH2EUw2MSbcz2mNOANby8zRLzz9ctZn4v/Q4SOcbKjHhvYibW5X6u1tSjBFKfpjs/Qm3Eebcc9/qp4weM9wE++3LgNw8TKPdGeuaZV5DQ+8cckOcHaQCeuIg6/ajfpuff6xXWcEENmGYKYVQRdJn58n0rtzI0YFjD0q4n03x5G+mK90bdkrSBDt35Pd0OJ0D/4tayOIL8YsjevVavbB2D5qdoXuhqAV3CbW7LDWErBR3ZrWx1W0ErAQRVjU93vhSL9do9OtSkO0jfHgdRoy7rCc9gwEL+zfTZmeoa9PrGa7xfdgPBN9dIdKQ/zv3mnc7on355EZkjVhFAoEV34W1M6NgA0oLMdaQUqQEtMaHfaSzIvFu0S0mtklgrroMFNqoSsGMC/WDlEz+FpFJXk0ZZW8FUjd50qpeqBM6ZkC4Zq478GHtA9sVnbEc5ijDAr78CG40D/e4466h0wBE1VBNYfoH39JmTAFHdrI2bh6Y0eIefGsxOeAicu85NrXlyIBJ2HAQ2k5ecevwsthQXMaW8WIOwU3fI1wXPah2O1xqMTkyrv4Tsv54/vRxZLeJ/gsxwXWb8kRr5BNO0vt3uVXnsKWZF4a6SoYluhq1sDOfetQ+aGrKT7/7Es=
-        file: deploy_me.txt
-        on:
-          repo: hilary/travistest
