@@ -1,0 +1,5 @@
+jobs:
+  include:
+    - script: echo "one"
+      script: echo "two"
+
