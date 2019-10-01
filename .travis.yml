@@ -1,4 +1,4 @@
-language: ruby
+language: go
 
 jobs:
   include:
@@ -7,18 +7,18 @@ jobs:
 
   - stage: deploy
     script: echo "deploy to gh releases"
-    if: branch = master
     dist: bionic
+    go: 1.13.x
+    before_deploy:
+    - sudo snap install goreleaser --classic
+    - go get -u github.com/digitalocean/github-changelog-generator
     deploy:
-      provider: releases
-      file: deploy_me.txt
+      provider: script
+      script: ./release_me.sh
       on:
-        repo: hilary/travistest
-      api_key:
-        secure: xbBbuaQE3hLQ8V0AIFUTL1rXK7SpjYRiRKAY7gwOXzm9hSuEeO59m19IopASUJ3ZY9fzbiTICnQUZLSdGPEhbRfZWkC5voGzVzcj1WmNJrixflkxduDchIEuZlPP9t0jdvlXUAaT4ZVLCbkC0JiS979I8ubG5/NE4UePdxJBGGhwT5MIMYv5RaG3uUKmHOpIT7HbDvjyu3sm7ZEuklWQzelCrYnAytvveULQNN8Bi0w+fvnoT6tm8bBTuJyiFjA6No3uX/O0z8vXW1gfMyZ7dNsa3FqMAfqNg8HyMWqPQ/q5+p6lTxZGvowMqWKbTThk76RyvU5l6LbVZeb2JjhNvDqBQsIoJ+fnVxVkkVQuHh7q/cklWm4qJlssvYWrHoooehNQtGZC7Cl7O2aEZ8i8djL0tlPqvPpbrSEdw9bVk+WG2tVH+sBEio1t+4KFjLDwTlAqqZSp0ClR9QgaNMe+EKIGdrlSYAJMS57RtAES62XtshOhLK3V2wBSyFIiHHXtIajh+uZ7UeN7ntJw594wmTm/Qb2rhnTdDByXuemhZ48NGYXwG1cchi7vRnQuPsPVTS/bg5CSe/mxahghBFkJRLrP4xvK56ABUhWibzHFsM9K4qirRlWwiBGuHLjwTqlqATuYXfUefVW5+i+OK99Sde01QC1TDYDvggK5aVwdBb0=
+        tags: true
 
   - script: echo "second deploy job"
-    if: branch = master
     os: osx
     deploy:
       provider: script
