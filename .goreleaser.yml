@@ -1,0 +1,14 @@
+project_name: travistest
+
+builds:
+- main: ./hello.go
+  env:
+  - CGO_ENABLED=0
+
+release:
+  github:
+    owner: hilary
+    name: travistest
+
+changelog:
+  skip: true
